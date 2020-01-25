@@ -1,0 +1,23 @@
+@import '../styles/vars.scss';
+
+@mixin dFlex($dir, $just, $align) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $just;
+  align-items: $align;
+}
+
+@mixin button{
+  @include dFlex(row, center, center);
+  padding: 0.5% 4%;
+  font-size: $pSize;
+  border-radius: 5px;
+  color: $blue;
+  backGround-color: $transBlack;
+
+  &:hover{
+    cursor: pointer;
+    backGround-color: $orange;
+    color: black;
+  }
+}

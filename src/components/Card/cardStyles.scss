@@ -1,12 +1,11 @@
 @import '../../styles/vars.scss';
+@import '../../styles//mix-ins.scss';
 
 .card{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include dFlex(column, center, center);
   background-color: $cardBgColor;
   width: 25%;
+  opacity: 0;
   padding: 1%;
   border-radius: 5px;
   box-shadow: 1px 1px 2px #aaa;
