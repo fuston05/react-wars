@@ -1,0 +1,24 @@
+@import '../../styles/vars.scss';
+
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $cardBgColor;
+  width: 25%;
+  padding: 1%;
+
+  h2{
+    font-size: $h2Size;
+    color: $h2Color;
+    width: 100%;
+    text-align: center;
+    margin: 0 0 1% 0;
+  }
+
+  p{
+    font-size: $pSize;
+    color: $pColor;
+  }
+}//end card
