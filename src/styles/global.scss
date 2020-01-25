@@ -1,0 +1,55 @@
+@import '../styles/reset.scss';
+@import '../styles/vars.scss';
+@import '../styles/mix-ins.scss';
+
+body{
+  font-family: $textFamily;
+  height: 100vh;
+  max-width: 100%;
+  overflow: hidden;
+  background-image: url('../assets/images/sw-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+p{
+  color: $pColor;
+  font-size: $pSize;
+}
+
+a{
+  color: $aColor;
+  font-size: $aSize;
+
+  &:hover{
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}
+
+h1{
+  color: $h1Color;
+  font-size: $h1Size;
+  font-family: $headingFamily;
+}
+
+h2 {
+  color: $h2Color;
+  font-size: $h2Size;
+}
+
+h3 {
+  color: $h3Color;
+  font-size: $h3Size;
+}
+
+h4 {
+  color: $h4Color;
+  font-size: $h4Size;
+}
+
+h5 {
+  color: $h5Color;
+  font-size: $h5Size;
+}
