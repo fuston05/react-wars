@@ -10,14 +10,16 @@
 @mixin button{
   @include dFlex(row, center, center);
   padding: 0.5% 4%;
-  font-size: $pSize;
+  font-size: $pSize+0.2;
+  border: none;
+  box-shadow: 1px 1px 2px #aaa;
   border-radius: 5px;
-  color: $blue;
-  backGround-color: $transBlack;
+  color: $buttonColor;
+  backGround-color: $buttonBgColor;
 
   &:hover{
     cursor: pointer;
-    backGround-color: $orange;
-    color: black;
+    backGround-color: $buttonBgHoverColor;
+    color: $buttonHoverColor;
   }
 }
