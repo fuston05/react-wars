@@ -73,22 +73,22 @@ function App() {
         <h1 className='mainHeading'>React Wars</h1>
       </Route>
 
-      <Route path='/'>
+      {/* <Route path='/'>
         <Nav />
-      </Route>
+      </Route> */}
       
-      <Route exact path= '/people'>
+      {/* <Route exact path= '/people'>
         <People  peopleData= {people}/>
-      </Route>
+      </Route> */}
       
 
-      <Route exact path= '/planets'>
+      {/* <Route exact path= '/planets'>
         <Planets />
-      </Route>
+      </Route> */}
 
-      <Route exact path= '/starShips'>
+      {/* <Route exact path= '/starShips'>
         <StarShips />
-      </Route>
+      </Route> */}
 
       {/* <Route path='/'>
         <Pagination func={setActive} />
