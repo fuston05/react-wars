@@ -8,18 +8,18 @@
 }
 
 @mixin button{
-  @include dFlex(row, center, center);
-  padding: 0.5% 4%;
-  font-size: $pSize+0.2;
   border: none;
+  font-size: $pSize+0.2;
   box-shadow: 1px 1px 2px #aaa;
+  padding: 0.5% 3%;
   border-radius: 5px;
   color: $buttonColor;
   backGround-color: $buttonBgColor;
-
-  &:hover{
-    cursor: pointer;
-    backGround-color: $buttonBgHoverColor;
-    color: $buttonHoverColor;
-  }
+  @include dFlex(row, center, center);
+  
+    &:hover{
+      cursor: pointer;
+      backGround-color: $buttonBgHoverColor;
+      color: $buttonHoverColor;
+    }
 }

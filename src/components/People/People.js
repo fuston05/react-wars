@@ -4,10 +4,11 @@ import { gsap } from "gsap";
 
 import Card from '../Card/Card';
 
+import './people.scss';
 
-const People = () => {
-  // state
-  const [people, setPeople]= useState([]);
+
+const People = (props) => {
+
 
   // vars
 
@@ -30,23 +31,12 @@ const People = () => {
 //   gsap.from('.card:last-child', { duration: 1.2, x: '130%', ease: 'circ.out' });
 // };
 
-  useEffect(() => {
-    Axios
-    .get('https://swapi.co/api/people')
-    .then(res => {
-      // console.log('res: ', res.data.results);
-      setPeople(res.data.results);
-    })
-    .catch(err => {console.log(err);})
-
-  }, [])
+  
 
   return (
     <div className= 'pageCont'>
-      <p>people page</p>
-      {console.log('people: ', people)}
       {
-        people.map((ele, i) => {
+        props.peopleData.map((ele, i) => {
           return <Card key= {i} name= {ele.name} />
         })
       }
