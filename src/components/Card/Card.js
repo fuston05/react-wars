@@ -4,7 +4,7 @@ import './cardStyles.scss';
 const Card = (props) => {
   return (
     <div className= 'card'>
-      <h2>{props.name}</h2>
+      <h2>{props.dataSet.name}</h2>
       <p>card Info here</p>
       <p>card Info here</p>
       <p>card Info here</p>

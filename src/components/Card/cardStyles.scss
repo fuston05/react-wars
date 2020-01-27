@@ -7,9 +7,13 @@
   width: 30%;
   opacity: 0.8;
   padding: 1%;
-  margin: 0 0 1% 0;
+  margin: 3% 0 0 2%;
   border-radius: 5px;
   box-shadow: 1px 1px 2px #aaa;
+
+  &:first-child{
+    margin-left: 0;
+  }
 
   h2{
     font-size: $h2Size;

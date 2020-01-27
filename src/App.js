@@ -3,10 +3,7 @@ import { Route } from 'react-router-dom';
 import Axios from 'axios';
 import { gsap } from "gsap";
 //components
-import Nav from './components/Nav/Nav';
-import Planets from './components/Planets/Planets';
-import People from './components/People/People';
-import StarShips from './components/Starships/StarShips';
+import HomePage from './components/HomePage/HomePage';
 import Pagination from './components/Pagination/Pagination';
 //styles
 import './styles/global.scss';
@@ -36,41 +33,45 @@ function setActive(e) {
 
 function App() {
   const [people, setPeople]= useState([]); 
-  const [planets, setPlanets]= useState([]); 
-  const [starShips, setStarShips]= useState([]); 
 
-  const [postsPerPage, setPostsPerPage]= useState(3);
-  const [pageNum, setPageNum]= useState(2);
+  const [postsPerPage, setPostsPerPage]= useState(5);
+  const [pageNum, setPageNum]= useState(1);
   const [currentData, setCurrentData]= useState([]);
+  const [totalPages, setTotalPages]= useState();
 
   function getCurrentData(data){
     //get index values for slicing pagination
     let startIndex= (pageNum*postsPerPage)-postsPerPage;
-    let endIndex= ( startIndex+postsPerPage )-1;
+    let endIndex= ( startIndex+postsPerPage );
     console.log('data: ', data);
     return data.slice(startIndex, endIndex);
+    //get array length for pagination use
+    setTotalPages(people.length);
   }
 
   // **********people api*************
   useEffect(() => { //default initial page state
     Axios
-    .get('https://swapi.co/api/people')
+    .get('https://swapi.co/api/people/')
     .then(res => {
-      // console.log('res: ', res.data.results);
+      console.log('res: ', res.data);
       setPeople(res.data.results);
-      let data= getCurrentData(people)
+      let data= getCurrentData(res.data.results);
       setCurrentData( data );
-      
     })
     .catch(err => {console.log(err);})
   }, [])
 
-  console.log('data: ', currentData);
+  console.log('CurrentData: ', currentData);
 
   return (
     <div className="App">
       <Route path='/'>
         <h1 className='mainHeading'>React Wars</h1>
+      </Route>
+
+      <Route path='/'>
+        <HomePage data= {currentData}/>
       </Route>
 
       {/* <Route path='/'>
