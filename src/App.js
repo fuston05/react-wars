@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import Axios from 'axios';
 import { gsap } from "gsap";
@@ -25,97 +25,63 @@ function setActive(e) {
   e.target.classList.add('active');
 }
 
-// ********************** API CALLS ***************************
-
-
 
 // ***************************
 
 function App() {
-  const [people, setPeople]= useState([]); 
+  const [people, setPeople] = useState([]);
+  const [isLoading, setIsLoading]= useState(false);
+  const [isNextPage, setIsNextPage]= useState(false);
+  const [isPreviousPage, setIsPreviousPage]= useState(false);
 
-  const [postsPerPage, setPostsPerPage]= useState(5);
-  const [pageNum, setPageNum]= useState(1);
-  const [currentData, setCurrentData]= useState([]);
-  const [totalPages, setTotalPages]= useState();
+  const [totalPages, setTotalPages] = useState();
 
-  function getCurrentData(data){
-    //get index values for slicing pagination
-    let startIndex= (pageNum*postsPerPage)-postsPerPage;
-    let endIndex= ( startIndex+postsPerPage );
-    console.log('data: ', data);
-    return data.slice(startIndex, endIndex);
-    //get array length for pagination use
-    setTotalPages(people.length);
-  }
+  // https://swapi.co/api/people/?page=
 
-  // **********people api*************
-  useEffect(() => { //default initial page state
+  function getData(page){
+    setIsLoading(true);
+    Axios
+      .get(`https://swapi.co/api/people/?page=${page}`)
+      .then(res => {
+        setPeople(res.data.results);
+        setTotalPages( Math.ceil(res.data.count/10) );
 
-      // console.log('res: ', res.data);
-      // setPeople(res.data.results);
-      // let data= getCurrentData(res.data.results);
-      // setCurrentData( data );
-      //****** */
-      let ready= true;
-      let count= 2;
-      // while(ready===true) {
-      //   Axios
-      //   .get(`https://swapi.co/api/people/?page= ${count}`)
-      //   .then(res => {
-      //     console.log('next: ', res.data.next);
-      //     setPeople( {...people}, [res.data.results] );
-      //     //is there another page?
-      //     if (res.data.next === null) {
-      //       //stop loop
-      //       console.log('null');
-      //       ready= false;
-      //       return false;
-      //     }//end if
-      //     count++;
-      //   })
-      //   .catch(err => {console.log(err);})
-        
-      // }//end for
+        // is there a 'next' page?
+        if( res.data.next !== null ){
+          setIsNextPage(true);
+        }else{setIsNextPage(false);}
 
-  }, [])
+        //is there a 'previous' page?
+        if(res.data.previous !== null){
+          setIsPreviousPage(true);
+        }else{
+          setIsPreviousPage(false);
+        }
 
-  console.log('CurrentData: ', currentData);
+        setIsLoading(false);
+      })
+      .catch(err => { console.log(err); })
+  }//end func
 
-  return (
-    <div className="App">
-      <Route path='/'>
-        <h1 className='mainHeading'>React Wars</h1>
-      </Route>
+    useEffect(() => {
+      getData(1);
+    }, [])
+    
+    
 
-      <Route path='/'>
-        <HomePage data= {currentData}/>
-      </Route>
+    return (
+      <div className="App">
+        <Route path='/'>
+          <h1 className='mainHeading'>React Wars</h1>
+        </Route>
 
-      {/* <Route path='/'>
-        <Nav />
-      </Route> */}
-      
-      {/* <Route exact path= '/people'>
-        <People  peopleData= {people}/>
-      </Route> */}
-      
+        <Route path='/'>
+          <HomePage isLoading={isLoading} data={people} />
+        </Route>
 
-      {/* <Route exact path= '/planets'>
-        <Planets />
-      </Route> */}
-
-      {/* <Route exact path= '/starShips'>
-        <StarShips />
-      </Route> */}
-
-      {/* <Route path='/'>
-        <Pagination func={setActive} />
-      </Route> */}
-
-      <Pagination />
-    </div>
-  );
+        <Pagination />
+      </div>
+    );
 }
 
 export default App;
