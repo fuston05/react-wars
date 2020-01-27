@@ -1,10 +1,10 @@
 import React from 'react';
 import './cardStyles.scss';
 
-const Card = () => {
+const Card = (props) => {
   return (
     <div className= 'card'>
-      <h2>Card Title</h2>
+      <h2>{props.dataSet.name}</h2>
       <p>card Info here</p>
       <p>card Info here</p>
       <p>card Info here</p>

@@ -1,0 +1,9 @@
+@import '../../styles/vars.scss';
+@import '../../styles/mix-ins.scss';
+
+.pageCont{
+  width: 100%;  
+  @include dFlex(row, space-evenly, center);
+  flex-wrap: wrap;
+  padding: 5% 0 0 0;
+}
