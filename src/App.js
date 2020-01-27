@@ -51,15 +51,33 @@ function App() {
 
   // **********people api*************
   useEffect(() => { //default initial page state
-    Axios
-    .get('https://swapi.co/api/people/')
-    .then(res => {
-      console.log('res: ', res.data);
-      setPeople(res.data.results);
-      let data= getCurrentData(res.data.results);
-      setCurrentData( data );
-    })
-    .catch(err => {console.log(err);})
+
+      // console.log('res: ', res.data);
+      // setPeople(res.data.results);
+      // let data= getCurrentData(res.data.results);
+      // setCurrentData( data );
+      //****** */
+      let ready= true;
+      let count= 2;
+      // while(ready===true) {
+      //   Axios
+      //   .get(`https://swapi.co/api/people/?page= ${count}`)
+      //   .then(res => {
+      //     console.log('next: ', res.data.next);
+      //     setPeople( {...people}, [res.data.results] );
+      //     //is there another page?
+      //     if (res.data.next === null) {
+      //       //stop loop
+      //       console.log('null');
+      //       ready= false;
+      //       return false;
+      //     }//end if
+      //     count++;
+      //   })
+      //   .catch(err => {console.log(err);})
+        
+      // }//end for
+
   }, [])
 
   console.log('CurrentData: ', currentData);
