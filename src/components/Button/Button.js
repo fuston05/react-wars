@@ -1,10 +1,10 @@
 import React from 'react';
 import './button.scss';
 
-const Button = (props) => {
+const Button = ({label, dirClass, clickFunction}) => {
   return (
       <>
-        <button></button>
+        <button onClick= { () => {clickFunction()} } className= {` paginationButton ${dirClass} `}>{label}</button>
       </>
   )
 }
