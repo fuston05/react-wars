@@ -3,14 +3,18 @@ import Card from '../Card/Card';
 import './homePage.scss';
 import Loader from '../../assets/images/loader.svg';
 
-const HomePage = (props) => {
-  if(props.isLoading === true){ 
-    return <img src= {Loader} />
+const HomePage = ({data, isLoading}) => {
+  if(isLoading){ 
+    return (
+      
+      <img className= 'loaderImg' alt= 'loading' src= {Loader} />
+    )
   }
 
   return (
-    <div className= 'mainCont'>
-      {props.data.map( (ele, i) => {
+    <div className= 'cardCont'>
+
+      {data.map( (ele, i) => {
       return <Card key= {i} dataSet= {ele} />
     } )}
     </div>

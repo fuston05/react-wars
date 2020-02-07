@@ -19,6 +19,12 @@
     text-shadow: 2px 2px 2px #000;
   }
 
+  .mainCont{
+    @include dFlex(column, center, center);
+    position: relative;
+    padding: 3% 0 0 0;
+  }
+
   // .cardCont{
   //   @include dFlex(row, space-evenly, center);
   //   width: 100%;

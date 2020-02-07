@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import Axios from 'axios';
 import { gsap } from "gsap";
+
 //components
 import HomePage from './components/HomePage/HomePage';
 import Pagination from './components/Pagination/Pagination';
+
+//images
+
 //styles
 import './styles/global.scss';
 import './styles/app.scss';
@@ -20,11 +24,6 @@ window.onload = function () {
 
 // ***************************
 
-function setActive(e) {
-  document.querySelectorAll('.page').forEach((ele) => { ele.classList.remove('active') });
-  e.target.classList.add('active');
-}
-
 
 // ***************************
 
@@ -33,10 +32,23 @@ function App() {
   const [isLoading, setIsLoading]= useState(false);
   const [isNextPage, setIsNextPage]= useState(false);
   const [isPreviousPage, setIsPreviousPage]= useState(false);
+  const [currentPage, setCurrentPage]= useState(1);
 
   const [totalPages, setTotalPages] = useState();
 
   // https://swapi.co/api/people/?page=
+
+  // ******** functions *********
+  function getNextPage(){
+    console.log(' next page click called');
+    console.log('total pages: ', totalPages);
+    setCurrentPage( currentPage => currentPage+1 );
+  }//end getNextPage
+
+  function getPrevPage(){
+    console.log(' prev page click called');
+    setCurrentPage( currentPage => currentPage-1 );
+  }//end getPrevPage
 
   function getData(page){
     setIsLoading(true);
@@ -64,23 +76,32 @@ function App() {
   }//end func
 
     useEffect(() => {
-      getData(1);
-    }, [])
+      getData(currentPage);
+    }, [currentPage])
     
     
-
+    // *****************************
     return (
       <div className="App">
         <Route path='/'>
           <h1 className='mainHeading'>React Wars</h1>
         </Route>
 
-        <Route path='/'>
-          <HomePage isLoading={isLoading} data={people} />
-        </Route>
+        <div className= 'mainCont'>
+          <Pagination 
+            nextFunction= {getNextPage}
+            prevFunction= {getPrevPage}
+            isNextPage= {isNextPage} 
+            isPreviousPage= {isPreviousPage} 
+          />
+  
+          <Route path='/'>
+            <HomePage isLoading={isLoading} data={people} />
+          </Route>
+        </div>
 
-        <Pagination />
-      </div>
+        
+      </div> //end App
     );
 }
 

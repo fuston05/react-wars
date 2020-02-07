@@ -1,7 +1,13 @@
 @import '../../styles/vars.scss';
 @import '../../styles/mix-ins.scss';
 
-.mainCont{
+.cardCont{
   @include dFlex(row, center, flex-start);
   flex-wrap: wrap;
+}
+
+img.loaderImg{
+
+margin: 0 auto;
+  
 }

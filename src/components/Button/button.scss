@@ -2,6 +2,18 @@
 @import '../../styles//mix-ins.scss';
 
 
-  .button{
+  .paginationButton{
     @include button;
+  }
+
+  button.next{
+    position: absolute;
+    right: 25px;
+    bottom: 0;
+  }
+
+  button.previous{
+    position: absolute;
+    left: 25px;
+    bottom: 0;
   }
