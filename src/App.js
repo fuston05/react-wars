@@ -40,13 +40,13 @@ function App() {
 
   // ******** functions *********
   function getNextPage(){
-    console.log(' next page click called');
-    console.log('total pages: ', totalPages);
+    // console.log(' next page click called');
+    // console.log('total pages: ', totalPages);
     setCurrentPage( currentPage => currentPage+1 );
   }//end getNextPage
 
   function getPrevPage(){
-    console.log(' prev page click called');
+    // console.log(' prev page click called');
     setCurrentPage( currentPage => currentPage-1 );
   }//end getPrevPage
 
@@ -55,22 +55,29 @@ function App() {
     Axios
       .get(`https://swapi.co/api/people/?page=${page}`)
       .then(res => {
-        setPeople(res.data.results);
-        setTotalPages( Math.ceil(res.data.count/10) );
+        window.setTimeout( () => {
+          setPeople(res.data.results);
+          setTotalPages( Math.ceil(res.data.count/10) );
 
-        // is there a 'next' page?
-        if( res.data.next !== null ){
-          setIsNextPage(true);
-        }else{setIsNextPage(false);}
+          // is there a 'next' page?
+          if( res.data.next !== null ){
+            setIsNextPage(true);
+          }else{setIsNextPage(false);}
 
-        //is there a 'previous' page?
-        if(res.data.previous !== null){
-          setIsPreviousPage(true);
-        }else{
-          setIsPreviousPage(false);
-        }
+          //is there a 'previous' page?
+          if(res.data.previous !== null){
+            setIsPreviousPage(true);
+          }else{
+            setIsPreviousPage(false);
+          }
+          
+          setIsLoading(false);
+        }, 1000);
+        
 
-        setIsLoading(false);
+        
+
+        
       })
       .catch(err => { console.log(err); })
   }//end func
