@@ -1,0 +1,30 @@
+// main container for the loader
+.loaderCont {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+    img.loaderImg {
+      margin: 0 auto;
+      border-radius: 50%;
+    }
+
+    // classes to be passed as props for background-color
+    img.withBg {
+      background-color: rgba(238, 238, 238, 0.5);
+    }
+
+    // classes to be passed as props for background-color
+    img.withoutBg {
+      background-color: rgba(238, 238, 238, 0);
+    }
+
+    // text that renders under the loader image i.e. 'Loading...'
+    p.loaderText {
+      font-size: 1.6rem;
+      color: rgba(238, 238, 238, 0.8);
+      text-shadow: 2px 2px 2px #000;
+    }
+} //end loaderCont

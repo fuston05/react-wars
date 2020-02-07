@@ -1,13 +1,19 @@
 import React from 'react';
+
+//components
 import Card from '../Card/Card';
+import Loader from '../Loader/Loader';
+
+//styles
 import './homePage.scss';
-import Loader from '../../assets/images/loader.svg';
+
+//images
+import LoaderImg from '../../assets/images/loader-3.gif';
 
 const HomePage = ({data, isLoading}) => {
   if(isLoading){ 
     return (
-      
-      <img className= 'loaderImg' alt= 'loading' src= {Loader} />
+      <Loader background= 'withBg' text= 'Loading...' image= {LoaderImg} />
     )
   }
 
